@@ -1,4 +1,4 @@
-import SparkPost from 'sparkpost';
+var SparkPost = require('sparkpost');
 
 var SparkPostAdapter = mailOptions => {
   if (!mailOptions || !mailOptions.apiKey){
