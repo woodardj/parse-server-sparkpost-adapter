@@ -1,21 +1,27 @@
-import SendGrid from 'sendgrid';
+import SparkPost from 'sparkpost';
 
-let SimpleSendGridAdapter = mailOptions => {
+let SparkPostAdapter = mailOptions => {
   if (!mailOptions || (!mailOptions.apiKey && !mailOptions.username && !mailOptions.password)){
-    throw 'SimpleSendGridAdapter requires an apiKey or username / password';
+    throw 'SparkPostAdapter requires an apiKey or username / password';
   }
   if (!mailOptions.fromAddress){
-    throw 'SimpleSendGridAdapter requires fromAddress';
+    throw 'SparkPostAdapter requires fromAddress';
   }
-  let sendgrid = (mailOptions.apiKey ? SendGrid(mailOptions.apiKey) : SendGrid(mailOptions.username, mailOptions.password));
+  let sparkpost = (mailOptions.apiKey ? SparkPost(mailOptions.apiKey) : SparkPost(mailOptions.username, mailOptions.password));
 
   let sendMail = ({to, subject, text}) => {
     return new Promise((resolve, reject) => {
-      sendgrid.send({
-        from: mailOptions.fromAddress,
-        to: to,
-        subject: subject,
-        text: text,
+      sparkpost.transmissions.send({
+        transmissionBody: {
+          content: {
+            from: mailOptions.fromAddress,
+            subject: subject,
+            html:text
+          },
+          recipients: [
+            {address: to}
+          ]
+        }
       }, function(err, json) {
         if (err) {
            reject(err);
@@ -30,4 +36,4 @@ let SimpleSendGridAdapter = mailOptions => {
   });
 }
 
-module.exports = SimpleSendGridAdapter
+module.exports = SparkPostAdapter
