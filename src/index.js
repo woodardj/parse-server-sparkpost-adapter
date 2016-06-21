@@ -1,4 +1,4 @@
-var SparkPost = require('sparkpost');
+// var SparkPost = ;
 
 var SparkPostAdapter = mailOptions => {
   if (!mailOptions || !mailOptions.apiKey){
@@ -7,7 +7,8 @@ var SparkPostAdapter = mailOptions => {
   if (!mailOptions.fromAddress){
     throw 'SparkPostAdapter requires fromAddress';
   }
-  var sparkpost = new SparkPost(mailOptions.apiKey);
+
+  var sparkpost = require('sparkpost')(mailOptions.apiKey);
 
   var sendMail = ({to, subject, text}) => {
     return new Promise((resolve, reject) => {
