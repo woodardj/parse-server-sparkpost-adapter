@@ -1,6 +1,6 @@
 {
   "name": "parse-server-sparkpost-adapter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple sparkpost adapter for parse server",
   "main": "lib/index.js",
   "dependencies": {
