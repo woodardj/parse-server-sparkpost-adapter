@@ -1,6 +1,6 @@
 // var SparkPost = ;
 
-var SparkPost = require('sparkpost').SparkPost;
+var SparkPost = require('sparkpost');
 
 var SparkPostAdapter = mailOptions => {
   if (!mailOptions || !mailOptions.apiKey){
