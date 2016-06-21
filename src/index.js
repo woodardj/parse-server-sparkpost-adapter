@@ -7,7 +7,7 @@ let SparkPostAdapter = mailOptions => {
   if (!mailOptions.fromAddress){
     throw 'SparkPostAdapter requires fromAddress';
   }
-  let sparkpost = (mailOptions.apiKey ? SparkPost(mailOptions.apiKey) : SparkPost(mailOptions.username, mailOptions.password));
+  let sparkpost = new (mailOptions.apiKey ? SparkPost(mailOptions.apiKey) : SparkPost(mailOptions.username, mailOptions.password));
 
   let sendMail = ({to, subject, text}) => {
     return new Promise((resolve, reject) => {
