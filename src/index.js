@@ -1,15 +1,15 @@
 import SparkPost from 'sparkpost';
 
-let SparkPostAdapter = mailOptions => {
-  if (!mailOptions || (!mailOptions.apiKey && !mailOptions.username && !mailOptions.password)){
-    throw 'SparkPostAdapter requires an apiKey or username / password';
+var SparkPostAdapter = mailOptions => {
+  if (!mailOptions || !mailOptions.apiKey){
+    throw 'SparkPostAdapter requires an apiKey';
   }
   if (!mailOptions.fromAddress){
     throw 'SparkPostAdapter requires fromAddress';
   }
-  let sparkpost = (mailOptions.apiKey ? new SparkPost(mailOptions.apiKey) : new SparkPost(mailOptions.username, mailOptions.password));
+  var sparkpost = new SparkPost(mailOptions.apiKey);
 
-  let sendMail = ({to, subject, text}) => {
+  var sendMail = ({to, subject, text}) => {
     return new Promise((resolve, reject) => {
       sparkpost.transmissions.send({
         transmissionBody: {
