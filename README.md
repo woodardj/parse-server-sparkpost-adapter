@@ -1,5 +1,5 @@
 # parse-server-sparkpost-adapter
-Simple sparkpost adapter for parse server. Borrowed heavily from oursky & xcarpentier's sendgrid adapter.
+Simple sparkpost adapter for parse server. Borrowed heavily from oursky's [sendgrid adapter](https://github.com/oursky/parse-server-sendgrid-adapter).
 
 ## Configuration
 
