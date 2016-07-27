@@ -19,7 +19,7 @@ var SparkPostAdapter = mailOptions => {
           content: {
             from: mailOptions.fromAddress,
             subject: subject,
-            html:text
+            text:text
           },
           recipients: [
             {address: to}
