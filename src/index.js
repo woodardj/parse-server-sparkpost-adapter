@@ -21,6 +21,10 @@ var SparkPostAdapter = mailOptions => {
             subject: subject,
             text:text
           },
+          options: {
+            open_tracking: false,
+            click_tracking: false,
+          },
           recipients: [
             {address: to}
           ]
